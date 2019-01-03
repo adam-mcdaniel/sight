@@ -56,6 +56,7 @@ def wait_for_keypress()
 # destroys windows
 def exit()
 
+
 class Image:    
     # Takes an opencv image (a numpy ndarray)
     def __init__(self, image)
