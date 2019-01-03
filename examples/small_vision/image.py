@@ -3,10 +3,10 @@ import numpy as np
 
 
 class Image:
-    def __init__(self, image):
+    def __init__(self, image) -> 'Image':
         self.data = image
 
-    def show(self, window_name, size=None):
+    def show(self, window_name, size=None) -> 'Image':
         if size:
             resized_image = cv2.resize(
                 self.data,
@@ -20,7 +20,7 @@ class Image:
             cv2.imshow(window_name, self.data)
         return self
 
-    def resize(self, size):
+    def resize(self, size) -> 'Image':
         self.data = cv2.resize(
             self.data,
             (
@@ -31,7 +31,7 @@ class Image:
         return self
 
     # gets rid of specs, and closes holes in image
-    def smooth(self):
+    def smooth(self) -> 'Image':
         # create morph kernel
         morphkernel = np.ones((1, 1), np.uint8)
         # removes specs
@@ -45,7 +45,7 @@ class Image:
         return self
 
     # gaussian blur on image on range 0 to 1
-    def blur(self, blur_percentage):
+    def blur(self, blur_percentage) -> 'Image':
         if blur_percentage > 1:
             raise Exception("Attempted to blur more than 100% blur")
         if blur_percentage < 0:
@@ -62,7 +62,7 @@ class Image:
         return self
 
     # Filter image with mask
-    def mask(self, mask):
+    def mask(self, mask) -> 'Image':
         self.data = cv2.bitwise_and(
             self.data,
             self.data,
@@ -70,7 +70,7 @@ class Image:
         )
         return self
 
-    def draw_circle(self, center, radius):
+    def draw_circle(self, center, radius) -> 'Image':
         if center[0] > 1:
             raise Exception("X location for draw_circle out of bounds (needs to be between 0 and 1)")
         if center[0] < 0:
@@ -88,14 +88,14 @@ class Image:
         cv2.circle(self.data, center, radius, (0, 255, 255), 10)
         return self
 
-    def draw_target(self, mask):
+    def draw_target(self, mask) -> 'Image':
         x, y, radius = self.get_largest_blob(mask)
         self.draw_circle(
             (x, y), radius
         )
         return self
 
-    def draw_targets(self, mask):
+    def draw_targets(self, mask) -> 'Image':
         blobs = self.get_blobs(mask)
         for blob in blobs:
             x, y, radius = blob
@@ -105,12 +105,12 @@ class Image:
 
         return self
 
-    def get_size(self): return self.data.shape[:2][::-1]
-    def get_height(self): return self.data.shape[0]
-    def get_width(self): return self.data.shape[1]
+    def get_width(self) -> int: return self.data.shape[1]
+    def get_height(self) -> int: return self.data.shape[0]
+    def get_size(self) -> (int, int): return self.data.shape[:2][::-1]
 
     # get mask for values range a to b
-    def get_mask(self, a, b):
+    def get_mask(self, a, b) -> np.ndarray:
         mask = cv2.inRange(
             self.data,
             np.array(a),
@@ -118,7 +118,7 @@ class Image:
             )
         return mask
     
-    def get_blobs(self, mask):
+    def get_blobs(self, mask) -> list:
         # find irregular shapes using mask
         contours = cv2.findContours(
             mask,
@@ -144,7 +144,7 @@ class Image:
 
         return blobs
     
-    def get_largest_blob(self, mask):
+    def get_largest_blob(self, mask) -> (int, int, int):
         # find irregular shapes using mask
         contours = cv2.findContours(
             mask,
@@ -170,7 +170,7 @@ class Image:
 
         return x, y, radius
 
-    def convert_to_hsv(self):
+    def convert_to_hsv(self) -> 'Image':
         self.data = cv2.cvtColor(
             self.data,
             cv2.COLOR_BGR2HSV
@@ -179,7 +179,7 @@ class Image:
             self.data
         )
 
-    def convert_to_gray(self):
+    def convert_to_gray(self) -> 'Image':
         self.data = cv2.cvtColor(
             self.data,
             cv2.COLOR_BGR2GRAY
@@ -188,15 +188,15 @@ class Image:
             self.data
         )
 
-    def convert_to_bgr(self):
+    def convert_to_bgr(self) -> 'Image':
         return self
 
 
 class HSV_Image(Image):
-    def convert_to_hsv(self):
+    def convert_to_hsv(self) -> 'Image':
         return self
 
-    def convert_to_gray(self):
+    def convert_to_gray(self) -> 'Image':
         self.data = cv2.cvtColor(
             self.data,
             cv2.COLOR_HSV2BGR
@@ -209,7 +209,7 @@ class HSV_Image(Image):
             self.data
         )
 
-    def convert_to_bgr(self):
+    def convert_to_bgr(self) -> 'Image':
         self.data = cv2.cvtColor(
             self.data,
             cv2.COLOR_HSV2BGR
