@@ -27,7 +27,6 @@ mask = original.get_mask(
 # apply mask
 # blur 100%
 # draw circle on the largest blob
-# convert to HSV
 # convert back to BGR
 # show image
 original.mask(mask).blur(1).draw_target(mask).convert_to_bgr().show("output")
