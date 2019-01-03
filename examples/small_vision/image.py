@@ -71,6 +71,16 @@ class Image:
         return self
 
     def draw_circle(self, center, radius):
+        if center[0] > 1:
+            raise Exception("X location for draw_circle out of bounds (needs to be between 0 and 1)")
+        if center[0] < 0:
+            raise Exception("X location for draw_circle out of bounds (needs to be between 0 and 1)")
+            
+        if center[1] > 1:
+            raise Exception("Y location for draw_circle out of bounds (needs to be between 0 and 1)")
+        if center[1] < 0:
+            raise Exception("Y location for draw_circle out of bounds (needs to be between 0 and 1)")
+
         center = (
             int(center[0] * int(self.get_width())),
             int(center[1] * int(self.get_height())),
