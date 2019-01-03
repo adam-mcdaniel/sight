@@ -118,7 +118,7 @@ class Image:
 
 ## Install Dependencies
 ---
-```
+```bash
 python3 -m pip install opencv-python
 python3 -m pip install numpy
 ```
