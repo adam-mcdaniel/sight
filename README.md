@@ -125,6 +125,6 @@ python3 -m pip install numpy
 
 ## Future
 ---
-I plan to develop this further to add features such as multithreaded, multiscaling template matching, and haarcascades.
+I plan to develop this further to add features such as multithreaded, multiscaling template matching, and haarcascades. I also plan to add support for sliders.
 
 Other than that there's not much else to add, the base code is super small yet powerful, and flexible to change.
