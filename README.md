@@ -123,7 +123,6 @@ python3 -m pip install opencv-python
 python3 -m pip install numpy
 ```
 
-
 ## Future
 ---
 I plan to develop this further to add features such as multithreaded, multiscaling template matching, and haarcascades.
