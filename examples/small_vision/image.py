@@ -33,7 +33,7 @@ class Image:
     # gets rid of specs, and closes holes in image
     def smooth(self):
         # create morph kernel
-        morphkernel = np.ones((1, 1), np.uint8)
+        morphkernel = np.ones((3, 3), np.uint8)
         # removes specs
         self.data = cv2.morphologyEx(
             self.data, cv2.MORPH_OPEN, morphkernel
@@ -152,7 +152,7 @@ class Image:
             cv2.CHAIN_APPROX_SIMPLE
         )[1]
 
-        x = y = radius = -1
+        x = y = radius = 0
         # if there is one or more contours
         if len(contours) > 0:
             # get shape with max area

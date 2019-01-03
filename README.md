@@ -48,6 +48,9 @@ You can use methods like `get_blobs`, `get_largest_blob`, and several others to 
 ---
 
 ```python
+# returns whether or not escape key pressed (True or False)
+def escape_key_pressed()
+
 # waits for keypress
 def wait_for_keypress()
 
