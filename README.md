@@ -64,12 +64,6 @@ class Image:
     # Resizes the image to a given size
     def resize(self, size)
 
-    # Resizes the image to a given size
-    def resize(self, size)
-
-    # gets rid of specs and closes holes in image
-    def smooth(self)
-
     # gets rid of specs and closes holes in image
     def smooth(self)
 
