@@ -56,61 +56,61 @@ def exit()
 
 class Image:    
     # Takes an opencv image (a numpy ndarray)
-    def __init__(self, image)
+    def __init__(self, image) -> Image
 
     # Shows this image under a given window name and a size
-    def show(self, window_name, size=None)
+    def show(self, window_name, size=None) -> Image
 
     # Resizes the image to a given size
-    def resize(self, size)
+    def resize(self, size) -> Image
 
     # gets rid of specs and closes holes in image
-    def smooth(self)
+    def smooth(self) -> Image
 
     # gaussian blur on image using a percentage
-    def blur(self, blur_percentage)
+    def blur(self, blur_percentage) -> Image
 
     # filter image with mask
-    def mask(self, mask)
+    def mask(self, mask) -> Image
 
     # draw circle with center location and radius on image
-    def draw_circle(self, center, radius)
+    def draw_circle(self, center, radius) -> Image
 
     # draws circle around the largest blob using a mask
-    def draw_target(self, mask)
+    def draw_target(self, mask) -> Image
 
     # draws circles around each blob using a mask
-    def draw_targets(self, mask)
+    def draw_targets(self, mask) -> Image
 
     # returns image width
-    def get_width(self)
+    def get_width(self) -> int
 
     # returns image height
-    def get_height(self)
+    def get_height(self) -> int
 
     # returns image (width, height)
-    def get_size(self)
+    def get_size(self) -> (int, int)
 
     # get mask for values range a to b
     # a and b are both lists 3 values long
     # a is the lower limit for each channel in the image
     # b is the upper limit for each channel in the image
-    def get_mask(self, a, b)
+    def get_mask(self, a, b) -> np.ndarray
 
     # returns a list of (x, y, radius) for each blob using a mask
-    def get_blobs(self, mask)
+    def get_blobs(self, mask) -> list
 
     # returns a (x, y, radius) for the largest blob using a mask
-    def get_largest_blob(self, mask)
+    def get_largest_blob(self, mask) -> (int, int, int)
 
     # converts image to HSV image
-    def convert_to_hsv(self)
+    def convert_to_hsv(self) -> Image
 
     # converts image to Gray image
-    def convert_to_gray(self)
+    def convert_to_gray(self) -> Image
 
     # converts image to BGR image
-    def convert_to_bgr(self)
+    def convert_to_bgr(self) -> Image
 ```
 
 

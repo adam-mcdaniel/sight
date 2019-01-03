@@ -39,6 +39,5 @@ print("total number of blobs:",
 original.draw_target(mask).convert_to_bgr().show("output")
 
 
-
 wait_for_keypress()
 exit()
