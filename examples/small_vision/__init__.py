@@ -1,3 +1,4 @@
+import cv2
 from .image import *
 
 
