@@ -1,5 +1,5 @@
 import cv2
-from vision_lib import *
+from small_vision import *
 
 # Read image from file
 image = cv2.imread("fuel.png", 1)

@@ -1,5 +1,5 @@
 import cv2
-from vision_lib import Image
+from small_vision import *
 
 image = cv2.imread("fuel.png", 1)
 
@@ -15,6 +15,5 @@ mask = original.get_mask(
 original.mask(mask).smooth().blur(1).draw_target(mask).convert_to_bgr().show("output")
 
 
-cv2.waitKey(0)
-
-cv2.destroyAllWindows()
+wait_for_keypress()
+exit()
