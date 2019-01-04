@@ -1,5 +1,5 @@
 # small-vision
-A tool for Vision Processing
+A library for Vision Processing
 
 ## What is small-vision?
 ---
