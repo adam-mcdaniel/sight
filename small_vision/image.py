@@ -6,6 +6,9 @@ class Image:
     def __init__(self, image):
         self.data = image
 
+    def clone(self):
+        return type(self)(self.data.copy())
+
     def show(self, window_name, size=None):
         if size:
             resized_image = cv2.resize(
@@ -90,19 +93,24 @@ class Image:
 
     def draw_target(self, mask):
         x, y, radius = self.get_largest_blob(mask)
-        self.draw_circle(
-            (x, y), radius
-        )
-        return self
 
-    def draw_targets(self, mask):
-        blobs = self.get_blobs(mask)
-        for blob in blobs:
-            x, y, radius = blob
+        if x or y and radius > 10:
             self.draw_circle(
                 (x, y), radius
             )
 
+        return self
+
+    def draw_targets(self, mask):
+        blobs = self.get_blobs(mask, f)
+        for blob in blobs:
+            x, y, radius = blob
+
+            if x or y and radius > 10:
+                self.draw_circle(
+                    (x, y), radius
+                )
+                
         return self
 
     def get_size(self): return self.data.shape[:2][::-1]
@@ -132,15 +140,13 @@ class Image:
         if len(contours) > 0:
             for contour in contours:
                 (x, y), radius = cv2.minEnclosingCircle(contour)
+                x = int(x) / int(self.get_width())
+                y = int(y) / int(self.get_height())
+                radius = int(radius)
 
-                if radius > 10:
-                    x = int(x) / int(self.get_width())
-                    y = int(y) / int(self.get_height())
-                    radius = int(radius)
-                    
-                    blobs.append(
-                        (x, y, radius)
-                        )
+                blobs.append(
+                    (x, y, radius)
+                    )
 
         return blobs
     
@@ -162,8 +168,6 @@ class Image:
                 )
         
             (x, y), radius = cv2.minEnclosingCircle(contour)
-
-            
             x = int(x) / int(self.get_width())
             y = int(y) / int(self.get_height())
             radius = int(radius)
