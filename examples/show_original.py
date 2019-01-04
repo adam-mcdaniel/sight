@@ -1,6 +1,3 @@
-
-
-
 import cv2, time
 from small_vision import *
 
@@ -22,8 +19,11 @@ while True:
         [40, 255, 255]
     )
 
+    # x, y, radius = copy.mask(mask).blur(1).get_largest_blob(mask)
+    # if radius > 10:
+    #     original.draw_circle((x, y), radius)
+
     blobs = copy.mask(mask).blur(1).get_blobs(mask)
-    
     for (x, y, radius) in blobs:
         if radius > 10:
             original.draw_circle((x, y), radius)

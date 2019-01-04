@@ -102,7 +102,7 @@ class Image:
         return self
 
     def draw_targets(self, mask):
-        blobs = self.get_blobs(mask, f)
+        blobs = self.get_blobs(mask)
         for blob in blobs:
             x, y, radius = blob
 
