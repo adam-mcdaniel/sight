@@ -2,7 +2,40 @@ import cv2
 from small_vision import *
 
 
-cap = cv2.VideoCapture("video.mp4")
+def main():
+    cap = cv2.VideoCapture("video.mp4")
+
+    while True:
+        # Get the image from camera 0
+        _, image = cap.read()
+        image = Image(image).resize((480, 320))
+
+        original = image.clone()
+
+
+        x, y, radius = get_closest_red_bot(image.clone())
+        if radius > 8:
+            original.draw_text(
+                (
+                    x-radius/original.get_width(),
+                    y-radius/original.get_height()
+                ), 'Red Bot', color=(255, 0, 0))
+
+
+        cubes = get_cubes(image.clone())
+        for x, y, radius in cubes:
+            original.draw_text(
+                (
+                    x-radius/original.get_width(),
+                    y-radius/original.get_height()
+                ), 'Cube', color=(0, 0, 255))
+        
+        original.show("overlay")
+
+        if escape_key_pressed():
+            break
+
+    exit()
 
 
 def get_closest_red_bot(image):
@@ -21,37 +54,9 @@ def get_cubes(image):
     )
     
     return filter(lambda t: t[2] > 10, image.mask(mask).smooth().blur(0.5).convert_to_bgr().get_blobs(mask))
-    
 
 
-while True:
-    # Get the image from camera 0
-    _, image = cap.read()
-    image = Image(image).resize((480, 320))
-
-    original = image.clone()
 
 
-    x, y, radius = get_closest_red_bot(image.clone())
-    if radius > 8:
-        original.draw_text(
-            (
-                x-radius/original.get_width(),
-                y-radius/original.get_height()
-            ), 'Red Bot', color=(255, 0, 0))
-
-
-    cubes = get_cubes(image.clone())
-    for x, y, radius in cubes:
-        original.draw_text(
-            (
-                x-radius/original.get_width(),
-                y-radius/original.get_height()
-            ), 'Cube', color=(0, 0, 255))
-    
-    original.show("overlay")
-
-    if escape_key_pressed():
-        break
-
-exit()
+if __name__ == "__main__":
+    main()
