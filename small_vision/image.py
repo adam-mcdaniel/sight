@@ -73,6 +73,26 @@ class Image:
         )
         return self
 
+    def draw_text(self, bottom_corner, text, color=(0, 255, 255), size=1):
+        font                   = cv2.FONT_HERSHEY_SIMPLEX
+        fontScale              = size
+        lineType               = 2
+
+        bottom_corner = (
+            int(bottom_corner[0] * int(self.get_width())),
+            int(bottom_corner[1] * int(self.get_height())),
+        )
+
+        cv2.putText(self.data, text, 
+            bottom_corner,
+            font, 
+            size,
+            color,
+            lineType
+            )
+
+        return self
+
     def draw_circle(self, center, radius, color=(0, 255, 255), thickness=10):
         if center[0] > 1:
             raise Exception("X location for draw_circle out of bounds (needs to be between 0 and 1)")
@@ -94,7 +114,7 @@ class Image:
     def draw_target(self, mask, color=None, thickness=None):
         x, y, radius = self.get_largest_blob(mask)
 
-        if x or y and radius > 10:
+        if (x or y) and radius > 10:
             args = []
             if color:
                 args.append(color)
@@ -111,7 +131,7 @@ class Image:
         for blob in blobs:
             x, y, radius = blob
 
-            if x or y and radius > 10:
+            if (x or y) and radius > 10:
                 args = []
                 if color:
                     args.append(color)

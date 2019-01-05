@@ -56,9 +56,31 @@ def wait_for_keypress()
 # destroys windows
 def exit()
 
+
+class Window:
+    # name the window
+    def __init__(self, name)
+
+    # adds a slider to the window with a given name
+    # set to the default value
+    # and with a max value of max
+    def add_slider(self, name, default=0, max=255)
+
+    # gets the value of a slider by name
+    def get_slider(self, name)
+
+    # gets a list of all slider values in the order you
+    # created the sliders
+    def get_sliders(self)
+
+
 class Image:    
     # Takes an opencv image (a numpy ndarray)
     def __init__(self, image)
+
+    # returns a copy of the image that you
+    # can edit without affecting the original
+    def clone(self)
 
     # Shows this image under a given window name and a size
     def show(self, window_name, size=None)
@@ -75,13 +97,23 @@ class Image:
     # filter image with mask
     def mask(self, mask)
 
-    # draw circle with center location and radius on image
+    # draw text with bottom_corner location
+    # (x and y are percentages of the screen width and height)
+    # color and size are optional
+    def draw_text(self, bottom_corner, text, color=(0, 255, 255), size=1)
+
+    # draw circle with center location
+    # (x and y are percentages of the screen width and height)
+    # and radius on image
+    # color and thickness are optional
     def draw_circle(self, center, radius, color=(0, 255, 255), thickness=10)
 
     # draws circle around the largest blob using a mask
+    # color and thickness are optional
     def draw_target(self, mask, color=None, thickness=None)
 
     # draws circles around each blob using a mask
+    # color and thickness are optional
     def draw_targets(self, mask, color=None, thickness=None)
 
     # returns image width

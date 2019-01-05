@@ -73,18 +73,18 @@ class Image:
         )
         return self
 
-    def draw_text(self, center, text, color=(0, 255, 255), size=1):
+    def draw_text(self, bottom_corner, text, color=(0, 255, 255), size=1):
         font                   = cv2.FONT_HERSHEY_SIMPLEX
         fontScale              = size
         lineType               = 2
 
-        center = (
-            int(center[0] * int(self.get_width())),
-            int(center[1] * int(self.get_height())),
+        bottom_corner = (
+            int(bottom_corner[0] * int(self.get_width())),
+            int(bottom_corner[1] * int(self.get_height())),
         )
 
         cv2.putText(self.data, text, 
-            center,
+            bottom_corner,
             font, 
             size,
             color,
