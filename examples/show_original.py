@@ -9,7 +9,7 @@ while True:
     # Get the image from camera 0
     _, image = cap.read()
     
-    original = Image(image).resize((320, 240)).show("original")
+    original = Image(image).resize((640, 480)).show("original")
 
 
 
@@ -25,8 +25,8 @@ while True:
 
     blobs = copy.mask(mask).blur(1).get_blobs(mask)
     for (x, y, radius) in blobs:
-        if radius > 10:
-            original.draw_circle((x, y), radius)
+        if radius > 20:
+            original.draw_circle((x, y), radius, color=(255, 0, 0))
         
     original.show("output")
 

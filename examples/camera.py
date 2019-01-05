@@ -24,7 +24,7 @@ while True:
     # draw circle around the largest blob
     # convert back to BGR
     # show image
-    original.mask(mask).smooth().blur(0.5).draw_target(mask).convert_to_bgr().show("output")
+    original.mask(mask).smooth().blur(0.1).draw_target(mask).convert_to_bgr().show("output")
 
     if escape_key_pressed():
         break

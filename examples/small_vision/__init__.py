@@ -1,5 +1,6 @@
 import cv2
 from .image import *
+from .window import *
 
 
 def wait_for_keypress():

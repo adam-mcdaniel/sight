@@ -73,7 +73,27 @@ class Image:
         )
         return self
 
-    def draw_circle(self, center, radius):
+    def draw_text(self, center, text, color=(0, 255, 255), size=1):
+        font                   = cv2.FONT_HERSHEY_SIMPLEX
+        fontScale              = size
+        lineType               = 2
+
+        center = (
+            int(center[0] * int(self.get_width())),
+            int(center[1] * int(self.get_height())),
+        )
+
+        cv2.putText(self.data, text, 
+            center,
+            font, 
+            size,
+            color,
+            lineType
+            )
+
+        return self
+
+    def draw_circle(self, center, radius, color=(0, 255, 255), thickness=10):
         if center[0] > 1:
             raise Exception("X location for draw_circle out of bounds (needs to be between 0 and 1)")
         if center[0] < 0:
@@ -88,27 +108,37 @@ class Image:
             int(center[0] * int(self.get_width())),
             int(center[1] * int(self.get_height())),
         )
-        cv2.circle(self.data, center, radius, (0, 255, 255), 10)
+        cv2.circle(self.data, center, radius, color, thickness)
         return self
 
-    def draw_target(self, mask):
+    def draw_target(self, mask, color=None, thickness=None):
         x, y, radius = self.get_largest_blob(mask)
 
-        if x or y and radius > 10:
+        if (x or y) and radius > 10:
+            args = []
+            if color:
+                args.append(color)
+            if thickness:
+                args.append(color)
             self.draw_circle(
-                (x, y), radius
+                (x, y), radius, *args
             )
 
         return self
 
-    def draw_targets(self, mask):
+    def draw_targets(self, mask, color=None, thickness=None):
         blobs = self.get_blobs(mask)
         for blob in blobs:
             x, y, radius = blob
 
-            if x or y and radius > 10:
+            if (x or y) and radius > 10:
+                args = []
+                if color:
+                    args.append(color)
+                if thickness:
+                    args.append(color)
                 self.draw_circle(
-                    (x, y), radius
+                    (x, y), radius, *args
                 )
                 
         return self

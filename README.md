@@ -76,13 +76,13 @@ class Image:
     def mask(self, mask)
 
     # draw circle with center location and radius on image
-    def draw_circle(self, center, radius)
+    def draw_circle(self, center, radius, color=(0, 255, 255), thickness=10)
 
     # draws circle around the largest blob using a mask
-    def draw_target(self, mask)
+    def draw_target(self, mask, color=None, thickness=None)
 
     # draws circles around each blob using a mask
-    def draw_targets(self, mask)
+    def draw_targets(self, mask, color=None, thickness=None)
 
     # returns image width
     def get_width(self)
