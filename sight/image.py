@@ -1,4 +1,5 @@
 import cv2
+import imutils
 import numpy as np
 
 
@@ -162,7 +163,14 @@ class Image:
             mask,
             cv2.RETR_TREE,
             cv2.CHAIN_APPROX_SIMPLE
-        )[1]
+        )
+
+        # Between opencv 3 & 4, there is a breaking change in how
+        # contours are returned by the findContours method.
+        # In opencv 3, contours[1] is used. In opencv 2 & 4, contours[0]
+        # is used instead.
+        contours = contours[1] if imutils.is_cv3() else contours[0]
+
 
         blobs = []    
 
@@ -186,7 +194,13 @@ class Image:
             mask,
             cv2.RETR_TREE,
             cv2.CHAIN_APPROX_SIMPLE
-        )[1]
+        )
+
+        # Between opencv 3 & 4, there is a breaking change in how
+        # contours are returned by the findContours method.
+        # In opencv 3, contours[1] is used. In opencv 2 & 4, contours[0]
+        # is used instead.
+        contours = contours[1] if imutils.is_cv3() else contours[0]
 
         x = y = radius = 0
         # if there is one or more contours

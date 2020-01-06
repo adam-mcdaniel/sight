@@ -1,5 +1,5 @@
 import cv2
-from small_vision import *
+from sight import *
 
 
 image = Image(cv2.imread("robots3.jpg", 1)).resize((800, 600))

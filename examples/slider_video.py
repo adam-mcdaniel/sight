@@ -1,5 +1,5 @@
 import cv2, time
-from small_vision import *
+from sight import *
 
 window = Window("output").add_slider("Hue Low", 30, 255).add_slider("Hue High", 65, 255).add_slider("Sat Low", 120, 255).add_slider("Sat High", 255, 255).add_slider("Val Low", 100, 255).add_slider("Val High", 255, 255).add_slider("Blur", 0, 100)
 

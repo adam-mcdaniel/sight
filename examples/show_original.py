@@ -1,5 +1,5 @@
 import cv2, time
-from small_vision import *
+from sight import *
 
 # Create an instance of camera 0
 cap = cv2.VideoCapture(0)

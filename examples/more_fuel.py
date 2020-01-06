@@ -1,5 +1,5 @@
 import cv2
-from small_vision import *
+from sight import *
 
 image = cv2.imread("more_fuel.jpg", 1)
 

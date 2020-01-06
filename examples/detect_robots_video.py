@@ -1,5 +1,5 @@
 import cv2
-from small_vision import *
+from sight import *
 
 
 def main():

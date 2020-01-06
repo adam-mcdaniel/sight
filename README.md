@@ -1,15 +1,15 @@
-# small-vision
+# sight
 A library for Vision Processing
 
-## What is small-vision?
+## What is sight?
 ---
 
-Small-vision is really just a library built on top of OpenCV. It abstracts away all of the awful C-like garbage, and makes it look more rust-like. Here's what I mean.
+sight is really just a library built on top of OpenCV. It abstracts away all of the awful C-like garbage, and makes it look more rust-like. Here's what I mean.
 
 If I want to read an image from a file, show the original image, convert it to HSV, apply a mask, apply a gaussian blur, draw a circle around the largest blob, convert it back to BGR, and output the image, that can be done very concisely, like this:
 ```python
 import cv2
-from small_vision import *
+from sight import *
 
 image = cv2.imread("fuel.png", 1)
 
